@@ -9,12 +9,14 @@ jobs:
         name: Checkout project
         
       - name: Run container
-        run: docker run -d -p 6901:6901 --name=novnc consol/centos-xfce-vnc:1.1.0
+        run: |
+          echo GITHUB_WORKSPACE is $GITHUB_WORKSPACE
+          docker run -d -p 6901:6901 --name=novnc -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE consol/centos-xfce-vnc:1.1.0
          
       - name: Attach to container
         run: |
+          docker exec novnc bash -c "cd $GITHUB_WORKSPACE && pwd"
           docker exec novnc bash -c "pwd"
-          docker exec novnc bash -c "ls"
         
     
         
