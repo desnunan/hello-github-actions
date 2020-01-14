@@ -3,24 +3,19 @@ on: push
 jobs:
   my_job:
     name: Hello world action
-    container:
-      image: consol/centos-xfce-vnc:1.1.0
-      ports:
-        - 6901:6901
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v1
         name: Checkout project
         
+      - name: Run container
+        run: docker run -d -p 6901:6901 --name=novnc consol/centos-xfce-vnc:1.1.0
+         
       - name: Attach to container
-        run: /bin/sh -c "docker ps"
-      
-      - name: Say hello
-        run: /bin/sh -c "echo Hello from $(hostname)"
+        run: |
+          docker exec novnc bash -c "pwd"
+          docker exec novnc bash -c "ls"
         
-      - name: Where am I
-        run: /bin/sh -c "pwd"
-        
-      - name: What can I see
-        run: /bin/sh -c "ls"
+    
         
   
