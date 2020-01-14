@@ -9,7 +9,7 @@ jobs:
       ports:
         - 6901:6901
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v1
         name: Checkout project
        
       - name: Execute shell script
