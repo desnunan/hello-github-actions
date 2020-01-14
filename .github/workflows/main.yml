@@ -3,7 +3,6 @@ on: push
 jobs:
   my_job:
     name: Hello world action
-    runs-on: ubuntu-latest    
     container:
       image: consol/centos-xfce-vnc:1.1.0
       ports:
