@@ -15,9 +15,8 @@ jobs:
          
       - name: Attach to container
         run: |
-          docker exec novnc bash -c "cd $GITHUB_WORKSPACE && pwd"
-          docker exec novnc bash -c "pwd"
-        
+          docker exec novnc bash -c "cd $GITHUB_WORKSPACE && chmod +x ./scripts/commands.sh && ./scripts/commands.sh"
+   
     
         
   
