@@ -1,11 +1,22 @@
 name: A workflow for my Hello World file
 on: push
 jobs:
-  build:
+  my_job:
     name: Hello world action
-    runs-on: ubuntu-latest    
+    runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v1
-    - uses: ./action-a
-      env:
-        MY_NAME: "Mona"
+      - uses: actions/checkout@v1
+        name: Checkout project
+        
+      - name: Run container
+        run: |
+          echo GITHUB_WORKSPACE is $GITHUB_WORKSPACE
+          docker run -d -p 6901:6901 --name=novnc -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE consol/centos-xfce-vnc:1.1.0
+         
+      - name: Attach to container
+        run: |
+          docker exec --user 0 novnc bash -c "cd $GITHUB_WORKSPACE && chmod +x ./scripts/commands.sh && ./scripts/commands.sh"
+   
+    
+        
+  

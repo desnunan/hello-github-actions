@@ -1,14 +1,16 @@
-FROM debian:9.5-slim
+## Custom Dockerfile
+FROM consol/centos-xfce-vnc
+ENV REFRESHED_AT 2018-03-18
 
-LABEL "com.github.actions.name"="Hello World"
-LABEL "com.github.actions.description"="Write arguments to the standard output"
-LABEL "com.github.actions.icon"="mic"
-LABEL "com.github.actions.color"="purple"
+# Switch to root user to install additional software
+USER 0
 
-LABEL "repository"="http://github.com/octocat/hello-world"
-LABEL "homepage"="http://github.com/actions"
-LABEL "maintainer"="Octocat <octocat@github.com>"
+## Install a gedit
+RUN yum install -y gedit \
+    && yum clean all
 
+## switch back to default user
+USER 1000
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
