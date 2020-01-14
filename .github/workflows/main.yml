@@ -12,6 +12,9 @@ jobs:
       - uses: actions/checkout@v1
         name: Checkout project
        
+      - name: Set permissions
+        run: /bin/sh -c 'chmod +x ./scripts/commands.sh'
+        
       - name: Execute shell script
         run: ./scripts/commands.sh
         
