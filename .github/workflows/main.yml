@@ -9,8 +9,8 @@ jobs:
       ports:
         - 6901:6901
     steps:
-      - uses: actions/checkout@v1
-       name: Checkout project
+      - uses: actions/checkout@master
+        name: Checkout project
        
       - name: Execute shell script
         run: ./scripts/commands.sh
