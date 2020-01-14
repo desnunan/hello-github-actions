@@ -13,6 +13,6 @@ jobs:
         name: Checkout project
        
       - name: Say hello
-        run: /bin/sh -c "Hello from $(hostname)"
+        run: /bin/sh -c "echo Hello from $(hostname)"
         
   
