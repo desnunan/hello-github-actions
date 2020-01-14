@@ -15,4 +15,10 @@ jobs:
       - name: Say hello
         run: /bin/sh -c "echo Hello from $(hostname)"
         
+      - name: Where am I
+        run: /bin/sh -c "pwd"
+        
+      - name: What can I see
+        run: /bin/sh -c "ls"
+        
   
