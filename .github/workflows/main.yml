@@ -11,7 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         name: Checkout project
-       
+        
+      - name: Attach to container
+        run: /bin/sh -c "docker ps"
+      
       - name: Say hello
         run: /bin/sh -c "echo Hello from $(hostname)"
         
